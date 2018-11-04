@@ -1,0 +1,22 @@
+/* pages/update-card/update-card.wxss */
+.container1 {
+  height: 100%;
+  width: 100%;
+  background-color: beige;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.item1 {
+  height: 100rpx;
+  width: 100rpx;
+  background-color: cyan;
+  border: 1px solid #fff;
+  flex-grow: 1;
+}
+
+.i3 {
+  flex-grow: 2;
+}

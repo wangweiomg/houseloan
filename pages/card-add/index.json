@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "van-field": "../../dist/field/index",
+    "van-button": "../../dist/button/index",
+    "van-cell": "../../dist/cell/index",
+    "van-cell-group": "../../dist/cell-group/index",
+    "van-radio": "../../dist/radio/index",
+    "van-radio-group": "../../dist/radio-group/index",
+    "van-row": "../../dist/row/index",
+    "van-col": "../../dist/col/index",
+    
+    "i-button": "../../dist2/button/index"
+  }
+}

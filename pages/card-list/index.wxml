@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<van-cell-group>
+  <van-cell title="{{ card1.name }}" label="{{ card1.billDay + '~' + card1.payDay}}" value="{{ card1.name }}" />
+
+  <view wx:for="{{cardList}}" wx:for-index="idx" wx:for-item="card">
+    <van-cell title="{{ card.name }}" label="账单日:{{ card.billDay }}   还款日:{{ card.repayDayNum}}" value="额度: {{ card.cardLimit }}" />
+  </view>
+
+</van-cell-group>
+
+<van-button type='primary' bind:click="addCardView">添加卡片</van-button>

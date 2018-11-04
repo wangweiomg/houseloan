@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "卡片列表",
+  "usingComponents": {
+    "van-button": "../../dist/button/index"
+    }
+}
