@@ -8,8 +8,28 @@
     </block>
   </view>
   <van-button type='primary' bind:click="clickMe">卡片列表</van-button>
-  <van-button type='primary' bind:click="addCardView">添加卡片</van-button>
+
   <view>
     <button bindtap='toEdit'>Edit</button>
   </view>
 </view>
+<i-row>
+  <i-col span="24" i-class="demo-col">
+    hello world
+  </i-col>
+  <i-col span="24" i-class="demo-col">
+    hello world
+  </i-col>
+  <i-col span="24" i-class="demo-col">
+    hello world
+  </i-col>
+  <i-col span="24" i-class="demo-col">
+    hello world
+  </i-col>
+</i-row>
+<i-row>
+  <i-col span="8" i-class="col-class">col-8</i-col>
+  <i-col span="8" i-class="col-class">col-8</i-col>
+  <i-col span="8" i-class="col-class">col-8</i-col>
+</i-row>
+<i-button type='primary' bind:click="addCardView">添加卡片</i-button>
