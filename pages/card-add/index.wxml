@@ -14,6 +14,5 @@
   <van-field label="还款日 n=" type="number" id="repayDayNum" value="{{ value }}" bind:change="onChange" placeholder="请输入还款日"/>
 </van-cell-group>
 
-<van-button type='primary' bind:click="save">保存</van-button>
 <i-button bind:click="save" type='primary'>保存</i-button>
     

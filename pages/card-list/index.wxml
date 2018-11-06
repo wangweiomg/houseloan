@@ -1,4 +1,18 @@
 <!--index.wxml-->
+
+<i-row>
+  <i-col span="24" i-class="demo-col">
+  我的卡数量 13，总额度: 528000
+  </i-col>
+  <i-col span="24" i-class="demo-col">
+  </i-col>
+  <i-col span="24" i-class="demo-col">
+  </i-col>
+  <i-col span="24" i-class="demo-col">
+    hello world
+  </i-col>
+</i-row>
+
 <van-cell-group>
   <van-cell title="{{ card1.name }}" label="{{ card1.billDay + '~' + card1.payDay}}" value="{{ card1.name }}" />
 
@@ -7,5 +21,4 @@
   </view>
 
 </van-cell-group>
-
-<van-button type='primary' bind:click="addCardView">添加卡片</van-button>
+<i-button type='primary' bind:click="addCardView">添加卡片</i-button>

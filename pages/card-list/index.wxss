@@ -1,0 +1,6 @@
+.demo-col{
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    background: rgba(0, 153, 229, .7);
+}
