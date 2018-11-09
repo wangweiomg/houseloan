@@ -9,6 +9,11 @@
     "van-row": "../../dist/row/index",
     "van-col": "../../dist/col/index",
     
-    "i-button": "../../dist2/button/index"
+    "i-button": "../../dist2/button/index",
+    "i-switch": "../../dist2/switch/index",
+    "i-cell": "../../dist2/cell/index"
+    
+    
+
   }
 }

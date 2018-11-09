@@ -8,12 +8,13 @@ Page({
     name: '',
     cardLimit: '',
     billDay: '',
-    repayDayType: '',
+    repayDayType: '1',
     repayDayNum: '',
     radio: '1',
     repayDayTypeTitle: '',
     title1: '固定还款日 n',
-    title2: '账单日后 n 天'
+    title2: '账单日后 n 天',
+    switch1: true
   },
 
   save: function(e) {
@@ -78,7 +79,25 @@ Page({
       radio: e.detail,
 
     });
+
+    console.log(this.data);
   }, 
+  switchChange(e){
+    const detail = e.detail;
+    if (detail.value) {
+      this.setData({
+        'repayDayType': 1,
+        'switch1': detail.value
+      });
+    } else {
+      this.setData({
+        'repayDayType': 2,
+        'switch1': detail.value
+
+      });
+    }
+
+  },
   
   formSubmit: function(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
