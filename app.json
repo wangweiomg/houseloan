@@ -1,10 +1,11 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs",
     "pages/card-list/index",
+    "pages/logs/logs",
     "pages/card-add/index",
-    "pages/card-update/index"
+    "pages/card-update/index",
+    "pages/read/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

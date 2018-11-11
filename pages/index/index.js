@@ -19,6 +19,12 @@ Page({
       url: '../card-update/index',
     })
   },
+  toRead: () => {
+    wx.navigateTo({
+      url: '../read/index'
+    });
+  },
+
   addCardView: function () {
     wx.navigateTo({
       url: '../card-add/index',
