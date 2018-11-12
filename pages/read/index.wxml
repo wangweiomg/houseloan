@@ -1,11 +1,50 @@
 <!--pages/read/index.wxml-->
-<i-panel title="攻略">
-    <view style="padding: 15px;">
-      信用卡的使用好坏，额度的大小最主要的取决于刷卡方式。银行给你的回复永远都会是多元化消费。而多元化就是刷卡方式以及商户多元化，这些信用卡的知识你必须要学。养卡，要大额信用卡必须有机器配合，而且最少每个月需要刷15-25笔，消费7-8成，小卡要刷爆.
- 
-    </view>
-
-    <view style='padding15px'>
-    
-    </view>
-</i-panel>
+<view class="caption-wrap">
+    <text class="caption-title">攻略</text>
+    <i-collapse name="{{name}}">
+        <i-collapse-item title="刷卡技巧" name="name1">
+            <view slot="content">
+                信用卡的使用好坏，额度的大小最主要的取决于刷卡方式。银行给你的回复永远都会是多元化消费。而多元化就是刷卡方式以及商户多元化，这些信用卡的知识你必须要学。养卡，要大额信用卡必须有机器配合，而且最少每个月需要刷15-25笔，消费7-8成，小卡要刷爆.
+            </view>
+        </i-collapse-item>
+        <i-collapse-item title="必备卡" name="name2">
+            <view slot="content" i-class-content="green-text">
+                交通银行白金卡（白麒麟）
+            </view>
+            <view slot="content" i-class-content="green-text">
+                招商银行百夫长白金卡（招行AE白）、钻石信用卡
+            </view>
+            <view slot="content" i-class-content="green-text">
+                中国银行长城环球白金信用卡
+            </view>
+            <view slot="content" i-class-content="green-text">
+                中信银行标准白金卡、尊尚IC白金卡、魔力白金卡
+            </view>
+            <view slot="content" i-class-content="green-text">
+                花旗银行礼程白金卡
+            </view>
+            <view slot="content" i-class-content="green-text">
+                工商银行运通百夫长白金卡（工行AE白）
+            </view>
+            <view slot="content" i-class-content="green-text">
+                民生银行豪华白金卡（豪白）、百夫长白金卡（民生AE白）
+            </view>
+            <view slot="content" i-class-content="green-text">
+                工商银行运通百夫长白金卡（工行AE白）
+            </view>
+            <view slot="content" i-class-content="green-text">
+                兴业银行标准白金卡（行标白）
+            </view>
+            <view slot="content" i-class-content="green-text">
+                建设银行标准白金卡（大山白）
+            </view>
+            
+            
+        </i-collapse-item>
+        <i-collapse-item title="乔纳森·伊夫" name="name3">
+            <view slot="content">
+                乔纳森·伊夫是一位工业设计师，现任Apple公司设计师兼资深副总裁，英国爵士。他曾参与设计了iPod，iMac，iPhone，iPad等众多苹果产品。除了乔布斯，他是对苹果那些著名的产品最有影响力的人。
+            </view>
+        </i-collapse-item>
+    </i-collapse>
+</view>

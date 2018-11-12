@@ -1,10 +1,11 @@
 {
   "navigationBarTitleText": "知识",
   "usingComponents": {
-    "van-button": "../../dist/button/index",
     "i-button": "../../dist2/button/index",
     "i-row": "../../dist2/row/index",
     "i-col": "../../dist2/col/index",
-    "i-panel": "../../dist2/panel/index"
+    "i-panel": "../../dist2/panel/index",
+    "i-collapse": "../../dist2/collapse/index",
+    "i-collapse-item": "../../dist2/collapse-item/index"
   }
 }

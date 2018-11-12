@@ -1,1 +1,9 @@
 /* pages/read/index.wxss */
+.caption-wrap{
+  margin-bottom: 30px;
+}
+
+.caption-title{
+  font-weight: bold;
+  padding:20px 10px;
+}
