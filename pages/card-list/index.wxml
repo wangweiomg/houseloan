@@ -2,14 +2,14 @@
 
 <i-row>
   <i-col span="24" i-class="demo-col">
-  我的卡数量 13，总额度: 528000
+  我的卡数量 {{ cardCount }}，总额度: {{ totalLimit }}
   </i-col>
   <i-col span="24" i-class="demo-col">
   </i-col>
   <i-col span="24" i-class="demo-col">
   </i-col>
   <i-col span="24" i-class="demo-col">
-    hello world
+    卡片总览
   </i-col>
 </i-row>
 

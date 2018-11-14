@@ -4,15 +4,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    cardCount: 0,
+    totalLimit: 0,
     cardList: [],
-    card1: { name: '光大信用卡', billDay: 16, payDay: 4 },
-    card2: { name: '招商信用卡', billDay: 16, payDay: 4 },
-    card3: { name: '建行信用卡', billDay: 15, payDay: 3 },
-    array: [
-      { name: '光大信用卡', billDay: 16, payDay: 4 },
-      { name: '招商信用卡', billDay: 16, payDay: 4 },
-      { name: '招商信用卡', billDay: 16, payDay: 4 },
-    ]
+    card1: { name: '光大信用卡', billDay: 16, payDay: 4 }
   },
   clickMe: function () {
 
@@ -44,8 +39,15 @@ Page({
       url: url,
       method: 'GET',
       success(res) {
+
+        let limit = 0;
+        for (let i of res.data) {
+          limit += i.cardLimit;
+        }
         ctx.setData({
-          cardList: res.data
+          cardList: res.data,
+          cardCount: res.data.length,
+          totalLimit: limit
         })
       }
     })
