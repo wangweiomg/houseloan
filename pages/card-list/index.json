@@ -5,7 +5,10 @@
     "van-cell-group": "../../dist/cell-group/index",
     "van-cell": "../../dist/cell/index",
     "i-button": "../../dist2/button/index",
-    "i-row": "../../dist2/row/index",
-    "i-col": "../../dist2/col/index"
+    "i-row": "/dist2/row/index",
+    "i-col": "/dist2/col/index",
+    "i-cell": "/dist2/cell/index",
+    "i-panel": "/dist2/panel/index",
+    "i-cell-group": "/dist2/cell-group/index"
   }
 }

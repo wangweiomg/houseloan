@@ -1,1 +1,10 @@
 /* pages/add-card/add-card.wxss */
+.saveBtn {
+  margin: 10px;
+  background-color: #2d8cf0
+}
+
+.savep {
+  color: white;
+  font-size: 14px;
+}

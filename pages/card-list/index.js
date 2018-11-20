@@ -6,8 +6,7 @@ Page({
   data: {
     cardCount: 0,
     totalLimit: 0,
-    cardList: [],
-    card1: { name: '光大信用卡', billDay: 16, payDay: 4 }
+    cardList: []
   },
   clickMe: function () {
 

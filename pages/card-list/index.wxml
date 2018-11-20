@@ -12,11 +12,18 @@
     卡片总览
   </i-col>
 </i-row>
+<i-panel title="布局">
+  <i-cell-group>
+      <i-cell title="Layout 栅格布局" is-link url="/pages/card-add/index"></i-cell>
+      <i-cell title="Grid 宫格" is-link url="/pages/card-add/index"></i-cell>
+      <i-cell title="Panel 面板" is-link url="/pages/card-add/index"></i-cell>
+      <i-cell title="List 列表" is-link url="/pages/card-add/index"></i-cell>
+      <i-cell title="Card 卡片" is-link url="/pages/card-add/index"></i-cell>
+  </i-cell-group>
+</i-panel>
 
 <van-cell-group>
-  <van-cell title="{{ card1.name }}" label="{{ card1.billDay + '~' + card1.payDay}}" value="{{ card1.name }}" />
-
-  <view wx:for="{{cardList}}" wx:for-index="idx" wx:for-item="card">
+  <view wx:for="{{cardList}}" wx:key="cardListId" wx:for-index="idx" wx:for-item="card">
     <van-cell title="{{ card.name }}" label="账单日:{{ card.billDay }}   还款日:{{ card.repayDayNum}}" value="额度: {{ card.cardLimit }}" />
   </view>
 

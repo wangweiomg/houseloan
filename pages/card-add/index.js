@@ -6,42 +6,16 @@ Page({
    */
   data: {
     repayDayType: '1',
+    multipleNum: '',
     title1: '固定还款日 n',
     title2: '账单日后 n 天',
     switch1: true
   },
 
-  save: function(e) {
-    console.log(this.data);
-    wx.request({
-      url: 'https://honeywen.com/card/save',
-      method: 'POST',
-      header: {
-        'content-type': 'application/json'
-      },
-      data: this.data,
-      success(res) {
-        console.log(res)
-        wx.navigateTo({
-          url: '../card-list/index',
-        })
-      }
-    })
-
-  },
-  multipleSave: (e) =>{
-    wx.request({
-      url: 'https://honeywen.com/card/multipleSave',
-      method: 'POST',
-      success(res) {
-        console.log(res)
-      }
-    });
-
-  },
   formSubmit: function (e) {
     let param = e.detail.value;
     param.repayDayType = this.data.repayDayType;
+    param.multipleNum = this.data.multipleNum;
     console.log('form发生了submit事件，携带数据为：', e.detail.value, param)
     wx.request({
       url: 'https://honeywen.com/card/save',
@@ -77,6 +51,20 @@ Page({
       });
     }
 
+  },
+  switch2Change(e) {
+    const detail = e.detail;
+    if (detail.value) {
+      this.setData({
+        'multipleNum': 5 ,
+        'switch2': detail.value
+      });
+    } else {
+      this.setData({
+        'multipleNum': '',
+        'switch2': detail.value
+      });
+    }
   },
   /**
    * 生命周期函数--监听页面加载
