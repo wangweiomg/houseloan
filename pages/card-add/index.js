@@ -26,7 +26,7 @@ Page({
       data: param,
       success(res) {
         console.log(res)
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../card-list/index',
         })
       }

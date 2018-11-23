@@ -12,20 +12,11 @@
     卡片总览
   </i-col>
 </i-row>
-<i-panel title="布局">
+<i-panel title="列表">
   <i-cell-group>
-      <i-cell title="Layout 栅格布局" is-link url="/pages/card-add/index"></i-cell>
-      <i-cell title="Grid 宫格" is-link url="/pages/card-add/index"></i-cell>
-      <i-cell title="Panel 面板" is-link url="/pages/card-add/index"></i-cell>
-      <i-cell title="List 列表" is-link url="/pages/card-add/index"></i-cell>
-      <i-cell title="Card 卡片" is-link url="/pages/card-add/index"></i-cell>
+      <view wx:for="{{ cardList }}" wx:key="cardList" wx:for-item="card">
+        <i-cell title="{{ card.name }}" label="账单日:{{ card.billDay}}  还款日:{{ card.repayDayNum}}" value="额度: {{ card.cardLimit}}" is-link url="/pages/card-update/index?id={{card.id}}&name={{card.name}}&billDay={{card.billDay}}&repayDayType={{card.repayDayType}}&repayDayNum={{card.repayDayNum}}&cardLimit={{card.cardLimit}}"/>
+      </view>
   </i-cell-group>
 </i-panel>
-
-<van-cell-group>
-  <view wx:for="{{cardList}}" wx:key="cardListId" wx:for-index="idx" wx:for-item="card">
-    <van-cell title="{{ card.name }}" label="账单日:{{ card.billDay }}   还款日:{{ card.repayDayNum}}" value="额度: {{ card.cardLimit }}" />
-  </view>
-
-</van-cell-group>
 <i-button type='primary' bind:click="addCardView">添加卡片</i-button>

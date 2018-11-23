@@ -1,5 +1,10 @@
 {
   "usingComponents": {
-    "van-button": "../../dist/button/index"
+    "i-input": "../../dist2/input/index",
+    "i-button": "../../dist2/button/index",
+    "i-panel": "../../dist2/panel/index",
+    "i-cell": "/dist2/cell/index",
+    "i-cell-group": "../../dist2/cell-group/index",
+    "i-switch": "../../dist2/switch/index"
     }
 }
