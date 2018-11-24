@@ -1,37 +1,20 @@
-import { VantComponent } from '../common/component';
-VantComponent({
-  relation: {
-    name: 'row',
-    type: 'ancestor'
-  },
-  props: {
-    span: Number,
-    offset: Number
-  },
-  data: {
-    style: ''
-  },
-  computed: {
-    classes: function classes() {
-      var _this$data = this.data,
-          span = _this$data.span,
-          offset = _this$data.offset;
-      return this.classNames('custom-class', 'van-col', {
-        ["van-col--" + span]: span,
-        ["van-col--offset-" + offset]: offset
-      });
-    }
-  },
-  methods: {
-    setGutter: function setGutter(gutter) {
-      var padding = gutter / 2 + "px";
-      var style = gutter ? "padding-left: " + padding + "; padding-right: " + padding + ";" : '';
+Component({
+    externalClasses: ['i-class'],
 
-      if (style !== this.data.style) {
-        this.setData({
-          style: style
-        });
-      }
+    relations: {
+        '../row/index': {
+            type: 'parent'
+        }
+    },
+
+    properties: {
+        span: {
+            value: 0,
+            type: Number
+        },
+        offset: {
+            value: 0,
+            type: Number
+        }
     }
-  }
 });

@@ -1,34 +1,42 @@
-import { VantComponent } from '../common/component';
-var DEFAULT_COLOR = '#999';
-var COLOR_MAP = {
-  danger: '#f44',
-  primary: '#38f',
-  success: '#06bf04'
-};
-VantComponent({
-  props: {
-    size: String,
-    type: String,
-    mark: Boolean,
-    color: String,
-    plain: Boolean,
-    round: Boolean
-  },
-  computed: {
-    classes: function classes() {
-      var data = this.data;
-      return this.classNames('van-tag', 'custom-class', {
-        'van-tag--mark': data.mark,
-        'van-tag--plain': data.plain,
-        'van-tag--round': data.round,
-        ["van-tag--" + data.size]: data.size,
-        'van-hairline--surround': data.plain
-      });
+Component({
+    externalClasses: ['i-class'],
+    properties : {
+        //slot name
+        name : {
+            type : String,
+            value : ''
+        },
+        //can click or not click
+        checkable : {
+            type : Boolean,
+            value : false
+        },
+        //is current choose
+        checked : {
+            type : Boolean,
+            value : true
+        },
+        //background and color setting
+        color : {
+            type : String,
+            value : 'default'
+        },
+        //control fill or not
+        type : {
+            type : String,
+            value : 'dot'
+        } 
     },
-    style: function style() {
-      var color = this.data.color || COLOR_MAP[this.data.type] || DEFAULT_COLOR;
-      var key = this.data.plain ? 'color' : 'background-color';
-      return key + ": " + color;
+    methods : {
+        tapTag(){
+            const data = this.data;
+            if( data.checkable ){
+                const checked = data.checked ? false : true;
+                this.triggerEvent('change',{
+                    name : data.name || '',
+                    checked : checked
+                });
+            }
+        }
     }
-  }
-});
+})

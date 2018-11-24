@@ -1,9 +1,8 @@
 {
   "navigationBarTitleText": "卡片列表",
   "usingComponents": {
-    "van-button": "../../dist/button/index",
-    "i-button": "../../dist2/button/index",
-    "i-row": "../../dist2/row/index",
-    "i-col": "../../dist2/col/index"
+    "i-button": "../../dist/button/index",
+    "i-row": "../../dist/row/index",
+    "i-col": "../../dist/col/index"
     }
 }

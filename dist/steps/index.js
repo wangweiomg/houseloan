@@ -1,47 +1,50 @@
-import { VantComponent } from '../common/component';
-VantComponent({
-  props: {
-    icon: String,
-    steps: Array,
-    active: Number,
-    direction: {
-      type: String,
-      value: 'horizontal'
+Component({
+    externalClasses: ['i-class'],
+    properties : {
+        current : {
+            type : Number,
+            value : -1,
+            observer : '_updateDataChange'
+        },
+        status : {
+            type : String,
+            //wait、process、finish、error
+            value : ''
+        },
+        direction : {
+            type : String,
+            //value has horizontal or vertical 
+            value : 'horizontal'
+        } 
     },
-    activeColor: {
-      type: String,
-      value: '#06bf04'
-    }
-  },
-  watch: {
-    steps: 'formatSteps',
-    active: 'formatSteps'
-  },
-  created: function created() {
-    this.formatSteps();
-  },
-  methods: {
-    formatSteps: function formatSteps() {
-      var _this = this;
-
-      var steps = this.data.steps;
-      steps.forEach(function (step, index) {
-        step.status = _this.getStatus(index);
-      });
-      this.setData({
-        steps: steps
-      });
+    relations : {
+        '../step/index' : {
+            type : 'child',
+            linked(){
+                this._updateDataChange();
+            },
+            linkChanged () {
+                this._updateDataChange();
+            },
+            unlinked () {
+                this._updateDataChange();
+            }
+        }
     },
-    getStatus: function getStatus(index) {
-      var active = this.data.active;
-
-      if (index < active) {
-        return 'finish';
-      } else if (index === active) {
-        return 'process';
-      }
-
-      return '';
+    methods: {
+        _updateDataChange() {
+            let steps = this.getRelationNodes('../step/index');
+            const len = steps.length;
+            if (len > 0) {
+                steps.forEach((step, index) => {
+                    step.updateDataChange({
+                        len : len,
+                        index : index,
+                        current : this.data.current,
+                        direction : this.data.direction
+                    });
+                });
+            }
+        }
     }
-  }
-});
+})

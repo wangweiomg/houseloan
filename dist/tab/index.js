@@ -1,31 +1,50 @@
-import { VantComponent } from '../common/component';
-VantComponent({
-  relation: {
-    name: 'tabs',
-    type: 'ancestor'
-  },
-  props: {
-    title: String,
-    disabled: Boolean
-  },
-  data: {
-    inited: false,
-    active: false
-  },
-  watch: {
-    disabled: function disabled() {
-      var parent = this.getRelationNodes('../tabs/index')[0];
+Component({
+    externalClasses: ['i-class'],
 
-      if (parent) {
-        parent.updateTabs();
-      }
+    relations: {
+        '../tabs/index': {
+            type: 'parent'
+        }
     },
-    title: function title() {
-      var parent = this.getRelationNodes('../tabs/index')[0];
 
-      if (parent) {
-        parent.updateTabs();
-      }
+    properties: {
+        key: {
+            type: String,
+            value: ''
+        },
+        title: {
+            type: String,
+            value: ''
+        },
+        dot: {
+            type: Boolean,
+            value: false
+        },
+        count: {
+            type: Number,
+            value: 0
+        }
+    },
+
+    data: {
+        current: false,
+        currentColor: '',
+        scroll: false
+    },
+
+    methods: {
+        changeCurrent (current) {
+            this.setData({ current });
+        },
+        changeCurrentColor (currentColor) {
+            this.setData({ currentColor });
+        },
+        changeScroll (scroll) {
+            this.setData({ scroll });
+        },
+        handleClickItem () {
+            const parent = this.getRelationNodes('../tabs/index')[0];
+            parent.emitEvent(this.data.key);
+        }
     }
-  }
 });

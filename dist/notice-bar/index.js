@@ -1,160 +1,112 @@
-import { VantComponent } from '../common/component';
-var FONT_COLOR = '#ed6a0c';
-var BG_COLOR = '#fffbe8';
-VantComponent({
-  props: {
-    text: {
-      type: String,
-      value: ''
-    },
-    mode: {
-      type: String,
-      value: ''
-    },
-    url: {
-      type: String,
-      value: ''
-    },
-    openType: {
-      type: String,
-      value: 'navigate'
-    },
-    delay: {
-      type: Number,
-      value: 0
-    },
-    speed: {
-      type: Number,
-      value: 50
-    },
-    scrollable: {
-      type: Boolean,
-      value: true
-    },
-    leftIcon: {
-      type: String,
-      value: ''
-    },
-    color: {
-      type: String,
-      value: FONT_COLOR
-    },
-    backgroundColor: {
-      type: String,
-      value: BG_COLOR
-    }
-  },
-  data: {
-    show: true,
-    hasRightIcon: false,
-    width: undefined,
-    wrapWidth: undefined,
-    elapse: undefined,
-    animation: null,
-    resetAnimation: null,
-    timer: null
-  },
-  watch: {
-    text: function text() {
-      this.setData({}, this.init);
-    }
-  },
-  created: function created() {
-    if (this.data.mode) {
-      this.setData({
-        hasRightIcon: true
-      });
-    }
-  },
-  destroyed: function destroyed() {
-    var timer = this.data.timer;
-    timer && clearTimeout(timer);
-  },
-  methods: {
-    init: function init() {
-      var _this = this;
+const VALID_MODE = ['closeable'];
+const FONT_COLOR = '#f60';
+const BG_COLOR = '#fff7cc';
 
-      this.getRect('.van-notice-bar__content').then(function (rect) {
-        if (!rect || !rect.width) {
-          return;
+Component({
+    externalClasses: ['i-class'],
+
+    properties: {
+        closable: {
+            type: Boolean,
+            value: false
+        },
+        icon: {
+            type: String,
+            value: ''
+        },
+        loop: {
+            type: Boolean,
+            value: false
+        },
+        // 背景颜色
+        backgroundcolor: {
+            type: String,
+            value: '#fefcec'
+        },
+        // 字体及图标颜色
+        color: {
+            type: String,
+            value: '#f76a24'
+        },
+        // 滚动速度
+        speed: {
+            type: Number,
+            value: 1000
         }
-
-        _this.setData({
-          width: rect.width
-        });
-
-        _this.getRect('.van-notice-bar__content-wrap').then(function (rect) {
-          if (!rect || !rect.width) {
-            return;
-          }
-
-          var wrapWidth = rect.width;
-          var _this$data = _this.data,
-              width = _this$data.width,
-              speed = _this$data.speed,
-              scrollable = _this$data.scrollable,
-              delay = _this$data.delay;
-
-          if (scrollable && wrapWidth < width) {
-            var elapse = width / speed * 1000;
-            var animation = wx.createAnimation({
-              duration: elapse,
-              timeingFunction: 'linear',
-              delay: delay
-            });
-            var resetAnimation = wx.createAnimation({
-              duration: 0,
-              timeingFunction: 'linear'
-            });
-
-            _this.setData({
-              elapse: elapse,
-              wrapWidth: wrapWidth,
-              animation: animation,
-              resetAnimation: resetAnimation
-            }, function () {
-              _this.scroll();
-            });
-          }
-        });
-      });
     },
-    scroll: function scroll() {
-      var _this2 = this;
 
-      var _this$data2 = this.data,
-          animation = _this$data2.animation,
-          resetAnimation = _this$data2.resetAnimation,
-          wrapWidth = _this$data2.wrapWidth,
-          elapse = _this$data2.elapse,
-          speed = _this$data2.speed;
-      resetAnimation.translateX(wrapWidth).step();
-      var animationData = animation.translateX(-(elapse * speed) / 1000).step();
-      this.setData({
-        animationData: resetAnimation.export()
-      });
-      setTimeout(function () {
-        _this2.setData({
-          animationData: animationData.export()
-        });
-      }, 100);
-      var timer = setTimeout(function () {
-        _this2.scroll();
-      }, elapse);
-      this.setData({
-        timer: timer
-      });
+    data: {
+        show: true,
+        wrapWidth: 0,
+        width: 0,
+        duration: 0,
+        animation: null,
+        timer: null,
     },
-    onClickIcon: function onClickIcon() {
-      var timer = this.data.timer;
-      timer && clearTimeout(timer);
-      this.setData({
-        show: false,
-        timer: null
-      });
+    detached() {
+        this.destroyTimer();
     },
-    onClick: function onClick(event) {
-      this.$emit('click', event);
+    ready() {
+        if (this.data.loop) {
+            this.initAnimation();
+        }
+    },
+
+    methods: {
+        initAnimation() {
+            wx.createSelectorQuery().in(this).select('.i-noticebar-content-wrap').boundingClientRect((wrapRect) => {
+                wx.createSelectorQuery().in(this).select('.i-noticebar-content').boundingClientRect((rect) => {
+                    const duration = rect.width / 40 * this.data.speed;
+                    const animation = wx.createAnimation({
+                        duration: duration,
+                        timingFunction: "linear",
+                    });
+                    this.setData({
+                        wrapWidth: wrapRect.width,
+                        width: rect.width,
+                        duration: duration,
+                        animation: animation
+                    }, () => {
+                        this.startAnimation();
+                    });
+                }).exec();
+
+            }).exec();
+        },
+        startAnimation() {
+            //reset
+            if (this.data.animation.option.transition.duration !== 0) {
+                this.data.animation.option.transition.duration = 0;
+                const resetAnimation = this.data.animation.translateX(this.data.wrapWidth).step();
+                this.setData({
+                    animationData: resetAnimation.export()
+                });
+            }
+            this.data.animation.option.transition.duration = this.data.duration;
+            const animationData = this.data.animation.translateX(-this.data.width).step();
+            setTimeout(() => {
+                this.setData({
+                    animationData: animationData.export()
+                });
+            }, 100);
+            const timer = setTimeout(() => {
+                this.startAnimation();
+            }, this.data.duration);
+            this.setData({
+                timer,
+            });
+        },
+        destroyTimer() {
+            if (this.data.timer) {
+                clearTimeout(this.data.timer);
+            }
+        },
+        handleClose() {
+            this.destroyTimer();
+            this.setData({
+                show: false,
+                timer: null
+            });
+        }
     }
-  }
 });

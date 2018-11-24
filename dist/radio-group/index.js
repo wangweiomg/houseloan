@@ -1,39 +1,38 @@
-import { VantComponent } from '../common/component';
-VantComponent({
-  field: true,
-  relation: {
-    name: 'radio',
-    type: 'descendant',
-    linked: function linked(target) {
-      var _this$data = this.data,
-          value = _this$data.value,
-          disabled = _this$data.disabled;
-      target.setData({
-        value: value,
-        disabled: disabled || target.data.disabled
-      });
-    }
-  },
-  props: {
-    value: null,
-    disabled: Boolean
-  },
-  watch: {
-    value: function value(_value) {
-      var children = this.getRelationNodes('../radio/index');
-      children.forEach(function (child) {
-        child.setData({
-          value: _value
-        });
-      });
+Component({
+    externalClasses: ['i-class'],
+    relations: {
+        '../radio/index': {
+            type: 'child',
+            linked() {
+                this.changeCurrent();
+            },
+            linkChanged() {
+                this.changeCurrent();
+            },
+            unlinked() {
+                this.changeCurrent();
+            }
+        }
     },
-    disabled: function disabled(_disabled) {
-      var children = this.getRelationNodes('../radio/index');
-      children.forEach(function (child) {
-        child.setData({
-          disabled: _disabled || child.data.disabled
-        });
-      });
+    properties: {
+        current: {
+            type: String,
+            value: '',
+            observer: 'changeCurrent'
+        },
+    },
+    methods: {
+        changeCurrent(val = this.data.current) {
+            let items = this.getRelationNodes('../radio/index');
+            const len = items.length;
+            if (len > 0) {
+                items.forEach(item => {
+                    item.changeCurrent(val === item.data.value);
+                });
+            }
+        },
+        emitEvent(current) {
+            this.triggerEvent('change', current);
+        }
     }
-  }
 });

@@ -1,40 +1,47 @@
-import { VantComponent } from '../common/component';
-VantComponent({
-  props: {
-    show: Boolean,
-    title: String,
-    cancelText: String,
-    zIndex: {
-      type: Number,
-      value: 100
-    },
-    actions: {
-      type: Array,
-      value: []
-    },
-    overlay: {
-      type: Boolean,
-      value: true
-    },
-    closeOnClickOverlay: {
-      type: Boolean,
-      value: true
-    }
-  },
-  methods: {
-    onSelect: function onSelect(event) {
-      var index = event.currentTarget.dataset.index;
-      var item = this.data.actions[index];
+Component({
+    externalClasses: ['i-class', 'i-class-mask', 'i-class-header'],
 
-      if (item && !item.disabled && !item.loading) {
-        this.$emit('select', item);
-      }
+    options: {
+        multipleSlots: true
     },
-    onCancel: function onCancel() {
-      this.$emit('cancel');
+
+    properties: {
+        visible: {
+            type: Boolean,
+            value: false
+        },
+        maskClosable: {
+            type: Boolean,
+            value: true
+        },
+        showCancel: {
+            type: Boolean,
+            value: false
+        },
+        cancelText: {
+            type: String,
+            value: '取消'
+        },
+        actions: {
+            type: Array,
+            value: []
+        }
     },
-    onClose: function onClose() {
-      this.$emit('close');
+
+    methods: {
+        handleClickMask () {
+            if (!this.data.maskClosable) return;
+            this.handleClickCancel();
+        },
+
+        handleClickItem ({ currentTarget = {} }) {
+            const dataset = currentTarget.dataset || {};
+            const { index } = dataset;
+            this.triggerEvent('click', { index });
+        },
+
+        handleClickCancel () {
+            this.triggerEvent('cancel');
+        }
     }
-  }
 });

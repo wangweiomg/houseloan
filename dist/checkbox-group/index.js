@@ -1,40 +1,38 @@
-import { VantComponent } from '../common/component';
-VantComponent({
-  field: true,
-  relation: {
-    name: 'checkbox',
-    type: 'descendant',
-    linked: function linked(target) {
-      var _this$data = this.data,
-          value = _this$data.value,
-          disabled = _this$data.disabled;
-      target.setData({
-        value: value.indexOf(target.data.name) !== -1,
-        disabled: disabled || target.data.disabled
-      });
-    }
-  },
-  props: {
-    value: Array,
-    disabled: Boolean,
-    max: Number
-  },
-  watch: {
-    value: function value(_value) {
-      var children = this.getRelationNodes('../checkbox/index');
-      children.forEach(function (child) {
-        child.setData({
-          value: _value.indexOf(child.data.name) !== -1
-        });
-      });
+Component({
+    externalClasses: ['i-class'],
+    relations: {
+        '../checkbox/index': {
+            type: 'child',
+            linked() {
+                this.changeCurrent();
+            },
+            linkChanged() {
+                this.changeCurrent();
+            },
+            unlinked() {
+                this.changeCurrent();
+            }
+        }
     },
-    disabled: function disabled(_disabled) {
-      var children = this.getRelationNodes('../checkbox/index');
-      children.forEach(function (child) {
-        child.setData({
-          disabled: _disabled || child.data.disabled
-        });
-      });
+    properties: {
+        current: {
+            type: Array,
+            value: [],
+            observer: 'changeCurrent'
+        },
+    },
+    methods: {
+        changeCurrent(val = this.data.current) {
+            let items = this.getRelationNodes('../checkbox/index');
+            const len = items.length;
+            if (len > 0) {
+                items.forEach(item => {
+                    item.changeCurrent(val.indexOf(item.data.value) !== -1);
+                });
+            }
+        },
+        emitEvent(current) {
+            this.triggerEvent('change', current);
+        }
     }
-  }
 });

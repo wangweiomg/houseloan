@@ -1,35 +1,38 @@
-import { VantComponent } from '../common/component';
-VantComponent({
-  field: true,
-  classes: ['node-class'],
-  props: {
-    checked: Boolean,
-    loading: Boolean,
-    disabled: Boolean,
-    size: {
-      type: String,
-      value: '30px'
+Component({
+    externalClasses: ['i-class'],
+    properties : {
+        value : {
+            type : Boolean,
+            value : false
+        },
+        //large small default
+        size : {
+            type : String,
+            value : 'default'
+        },
+        // is or not disable
+        disabled : {
+            type : Boolean,
+            value : false
+        },
+        // hidden inut name
+        name : {
+            type : String,
+            value : ''
+        }
+    },
+    options: {
+        // 在组件定义时的选项中启用多slot支持
+        multipleSlots: true
+    },
+    methods : {
+        toggle(){
+            if( this.data.disabled ) return;
+            const data = this.data;
+            const value = data.value ? false : true;
+            this.triggerEvent('change',{
+                value : value
+            })
+        }
     }
-  },
-  watch: {
-    checked: function checked(value) {
-      this.setData({
-        value: value
-      });
-    }
-  },
-  created: function created() {
-    this.setData({
-      value: this.data.checked
-    });
-  },
-  methods: {
-    onClick: function onClick() {
-      if (!this.data.disabled && !this.data.loading) {
-        var checked = !this.data.checked;
-        this.$emit('input', checked);
-        this.$emit('change', checked);
-      }
-    }
-  }
 });

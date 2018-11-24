@@ -1,44 +1,56 @@
-import { VantComponent } from '../common/component';
-VantComponent({
-  field: true,
-  relation: {
-    name: 'radio-group',
-    type: 'ancestor'
-  },
-  classes: ['icon-class', 'label-class'],
-  props: {
-    name: null,
-    value: null,
-    disabled: Boolean,
-    labelDisabled: Boolean,
-    labelPosition: String
-  },
-  computed: {
-    iconClass: function iconClass() {
-      var _this$data = this.data,
-          disabled = _this$data.disabled,
-          name = _this$data.name,
-          value = _this$data.value;
-      return this.classNames('van-radio__icon', {
-        'van-radio__icon--disabled': disabled,
-        'van-radio__icon--checked': !disabled && name === value,
-        'van-radio__icon--check': !disabled && name !== value
-      });
-    }
-  },
-  methods: {
-    emitChange: function emitChange(value) {
-      var instance = this.getRelationNodes('../radio-group/index')[0] || this;
-      instance.$emit('input', value);
-      instance.$emit('change', value);
+const prefixCls = 'i-radio';
+
+Component({
+    externalClasses: ['i-class'],
+    relations: {
+        '../radio-group/index': {
+            type: 'parent'
+        }
     },
-    onChange: function onChange(event) {
-      this.emitChange(event.detail.value);
+    properties: {
+        value: {
+            type: String,
+            value: ''
+        },
+        checked: {
+            type: Boolean,
+            value: false
+        },
+        disabled: {
+            type: Boolean,
+            value: false
+        },
+        color: {
+            type: String,
+            value: '#2d8cf0'
+        },
+        position: {
+            type: String,
+            value: 'left', //left right
+            observer: 'setPosition'
+        }
     },
-    onClickLabel: function onClickLabel() {
-      if (!this.data.disabled && !this.data.labelDisabled) {
-        this.emitChange(this.data.name);
-      }
+    data: {
+        checked: true,
+        positionCls: `${prefixCls}-radio-left`,
+    },
+    attached() {
+        this.setPosition();
+    },
+    methods: {
+        changeCurrent(current) {
+            this.setData({ checked: current });
+        },
+        radioChange() {
+            if (this.data.disabled) return;
+            const item = { current: !this.data.checked, value: this.data.value };
+            const parent = this.getRelationNodes('../radio-group/index')[0];
+            parent ? parent.emitEvent(item) : this.triggerEvent('change', item);
+        },
+        setPosition() {
+            this.setData({
+                positionCls: this.data.position.indexOf('left') !== -1 ? `${prefixCls}-radio-left` : `${prefixCls}-radio-right`,
+            });
+        }
     }
-  }
 });
