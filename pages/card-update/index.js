@@ -47,13 +47,30 @@ Page({
       success(res) {
         console.log(res)
         wx.redirectTo({
-          url: '../card-list/index',
+          url: '../card-list/index'
         })
       }
     })
   },
   formReset: function () {
     console.log('form发生了reset事件')
+  },
+
+  remove: function() {
+    let id = this.data.id;
+    let url = "https://honeywen.com/card/remove/" + id;
+    wx.request({
+      url: url,
+      method: 'POST',
+      success(res) {
+        wx.redirectTo({
+          url: '../card-list/index'
+        });
+
+      }
+
+    });
+
   },
 
   /**

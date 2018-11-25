@@ -9,14 +9,9 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-  clickMe: function () {
+  toList: function () {
     wx.navigateTo({
       url: '../card-list/index',
-    })
-  },
-  toEdit: () => {
-    wx.navigateTo({
-      url: '../card-update/index',
     })
   },
   toRead: () => {
@@ -25,12 +20,6 @@ Page({
     });
   },
 
-  addCardView: function () {
-    wx.navigateTo({
-      url: '../card-add/index',
-    })
-
-  },
   sendMsg: ()=>{
     console.log('send');
     let url1 = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxd8871037033bb213&secret=d4d6d680d855162b2b4763433c9ff3b5";
@@ -72,10 +61,6 @@ Page({
     })
 
   },
-  formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.formId, e.detail.value)
-  },
-
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({

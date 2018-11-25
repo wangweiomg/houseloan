@@ -9,6 +9,6 @@
   </view>
 </view>
 
-<i-button type='primary' bind:click="clickMe">卡片列表</i-button>
+<i-button type='primary' bind:click="toList">卡片列表</i-button>
 <i-button type='primary' bind:click="toRead">知识角</i-button>
 <i-button open-type="contact">客服</i-button>

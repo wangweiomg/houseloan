@@ -18,4 +18,10 @@
       </button>
     </view>
   </form>
+
+  <view class="btn-area">
+      <button class="saveBtn" bindtap="remove">
+        <p class="savep">删除</p>
+      </button>
+    </view>
 </i-panel>
