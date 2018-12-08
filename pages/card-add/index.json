@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "新增",
   "usingComponents": {
     "i-button": "../../dist/button/index",
     "i-switch": "../../dist/switch/index",

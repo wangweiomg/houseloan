@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "卡片列表",
+  "navigationBarTitleText": "主页",
   "usingComponents": {
     "i-button": "../../dist/button/index",
     "i-row": "../../dist/row/index",
