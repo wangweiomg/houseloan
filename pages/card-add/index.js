@@ -1,4 +1,6 @@
 // pages/add-card/add-card.js
+//获取应用实例
+const app = getApp()
 Page({
 
   /**
@@ -16,6 +18,7 @@ Page({
     let param = e.detail.value;
     param.repayDayType = this.data.repayDayType;
     param.multipleNum = this.data.multipleNum;
+    param.wxOpenId = app.globalData.openid;
     console.log('form发生了submit事件，携带数据为：', e.detail.value, param)
     wx.request({
       url: 'https://honeywen.com/card/save',
