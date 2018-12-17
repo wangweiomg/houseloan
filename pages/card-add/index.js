@@ -1,6 +1,8 @@
 // pages/add-card/add-card.js
 //获取应用实例
 const app = getApp()
+const { $Toast } = require('../../dist/base/index');
+
 Page({
 
   /**
@@ -68,6 +70,14 @@ Page({
         'switch2': detail.value
       });
     }
+  },
+  feedback: (e)=>{
+    console.log(123);
+    $Toast({
+      content: '信用卡还款日分为固定还款日和账单日后延后多少天，这里记录具体情况的数值。',
+      duration: 3
+    });
+
   },
   /**
    * 生命周期函数--监听页面加载

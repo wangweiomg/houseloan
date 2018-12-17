@@ -3,7 +3,7 @@
   <form bindsubmit='formSubmit' bindreset="formReset">
     <i-input type="text" value="{{name}}" name="name" title="卡片名称" autofocus placeholder="请输入卡片名称" />
     <i-input type="number" value="{{cardLimit}}" name="cardLimt" title="卡片额度" placeholder="请输入卡片额度" />
-    <i-input type="number" value="{{billDay}}" name="billDay" title="账单日" placeholder="请输入账单日" />
+    <i-input type="number" value="{{billDay}}" name="billDay" title="账单日" maxlength='2' placeholder="请输入账单日" />
     <i-cell title="还款日类型">
       <i-switch name="repayDayType" value="{{switch1}}" size="large" bind:change="switchChange" slot="footer">
         <view slot="open">固定</view>
@@ -11,7 +11,7 @@
       </i-switch>
     </i-cell>
 
-    <i-input title="还款日记数" type="number" value="{{repayDayNum}}" name="repayDayNum" placeholder="请输入还款日" />
+    <i-input title="还款日记数" type="number" value="{{repayDayNum}}" name="repayDayNum" maxlength='2' placeholder="请输入还款日" />
     <view class="btn-area">
       <button formType="submit" class="saveBtn">
         <p class="savep">保存</p>

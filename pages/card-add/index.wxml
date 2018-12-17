@@ -3,14 +3,26 @@
   <form bindsubmit='formSubmit' bindreset="formReset">
     <i-input title="卡片名称" type='text' name="name" placeholder='请输入卡片名称' autofocus/>
     <i-input title="卡片额度" type="number" name="cardLimit" placeholder="请输入卡片额度" />
-    <i-input title="账单日" type="number" name="billDay" placeholder='请输入账单日' />
+    <i-input title="账单日" type="number" name="billDay" maxlength='2' placeholder='请输入账单日' />
     <i-cell title="还款日类型">
       <i-switch name="repayDayType" value="{{switch1}}" size="large" bind:change="switchChange" slot="footer">
         <view slot="open">固定</view>
         <view slot="close">延后</view>
       </i-switch>
     </i-cell>
-    <i-input title="还款日记数" type='number' name="repayDayNum" placeholder='请输入还款日记数'/>
+    <i-input title="还款日记数" type='number' name="repayDayNum" maxlength='2' placeholder='请输入还款日记数' />
+    <i-row>
+      <i-col span='22'>
+        <i-input title="还款日记数" type='number' name="repayDayNum" maxlength='2' placeholder='请输入还款日记数' />
+      </i-col>
+      <i-col span='2'>
+        <i-icon bindtap='feedback' type="feedback" size='28' />
+      </i-col>
+    </i-row>
+    <i-toast id="toast" />
+
+
+
     <i-cell title="复制5个">
       <i-switch name="multipleNum" value="{{switch2}}" size="large" bind:change="switch2Change" slot="footer">
         <view slot="open">是</view>
