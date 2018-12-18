@@ -10,7 +10,6 @@
         <view slot="close">延后</view>
       </i-switch>
     </i-cell>
-    <i-input title="还款日记数" type='number' name="repayDayNum" maxlength='2' placeholder='请输入还款日记数' />
     <i-row>
       <i-col span='22'>
         <i-input title="还款日记数" type='number' name="repayDayNum" maxlength='2' placeholder='请输入还款日记数' />

@@ -75,7 +75,7 @@ Page({
     console.log(123);
     $Toast({
       content: '信用卡还款日分为固定还款日和账单日后延后多少天，这里记录具体情况的数值。',
-      duration: 3
+      duration: 5
     });
 
   },
